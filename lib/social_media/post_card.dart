@@ -78,6 +78,7 @@ class _PostCardState extends State<PostCard> {
             ),
             subtitle: const Text('Student Feed'),
           ),
+
           Padding(
             padding: const EdgeInsets.all(12),
             child: Text(
@@ -85,6 +86,7 @@ class _PostCardState extends State<PostCard> {
               style: const TextStyle(fontSize: 16),
             ),
           ),
+
           Image.network(
             widget.post.imageUrl,
             width: double.infinity,
@@ -103,6 +105,7 @@ class _PostCardState extends State<PostCard> {
               );
             },
           ),
+
           Row(
             children: [
               TextButton.icon(
@@ -118,6 +121,7 @@ class _PostCardState extends State<PostCard> {
               Text('${comments.length} Comments'),
             ],
           ),
+
           for (final String comment in comments)
             Padding(
               padding: const EdgeInsets.fromLTRB(
@@ -133,6 +137,7 @@ class _PostCardState extends State<PostCard> {
                 child: Text(comment),
               ),
             ),
+
           Padding(
             padding: const EdgeInsets.all(12),
             child: Row(

@@ -87,6 +87,7 @@ class _CreatePostSheetState extends State<CreatePostSheet> {
               ),
             ),
             const SizedBox(height: 20),
+
             TextField(
               controller: _captionController,
               maxLines: 3,
@@ -97,6 +98,7 @@ class _CreatePostSheetState extends State<CreatePostSheet> {
               ),
             ),
             const SizedBox(height: 20),
+
             TextField(
               controller: _imageController,
               keyboardType: TextInputType.url,
@@ -107,6 +109,7 @@ class _CreatePostSheetState extends State<CreatePostSheet> {
               ),
             ),
             const SizedBox(height: 20),
+
             ElevatedButton(
               onPressed: submitPost,
               child: const Text('Submit Post'),
