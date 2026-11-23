@@ -59,7 +59,14 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
       ),
       body: posts.isEmpty
           ? const Center(
-              child: Text('No posts yet. Create one!'),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.dynamic_feed, size: 64, color: Colors.grey),
+                  SizedBox(height: 12),
+                  Text('No posts yet. Create one!'),
+                ],
+              ),
             )
           : ListView.builder(
               padding: const EdgeInsets.all(12),
@@ -75,7 +82,7 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: openCreatePostSheet,
-        backgroundColor: Colors.green,
+        backgroundColor: const Color(0xFF3949AB),
         foregroundColor: Colors.white,
         tooltip: 'Create Post',
         child: const Icon(Icons.add),

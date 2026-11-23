@@ -83,33 +83,90 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     super.dispose();
   }
 
+  Widget opButton(String label, String op, Color color) {
+    return SizedBox(
+      width: 72,
+      height: 72,
+      child: ElevatedButton(
+        onPressed: () => calculate(op),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+          padding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        child: Text(
+          label,
+          style: const TextStyle(fontSize: 30),
+        ),
+      ),
+    );
+  }
+
+  InputDecoration fieldStyle(String label, String hint, IconData icon) {
+    return InputDecoration(
+      labelText: label,
+      hintText: hint,
+      prefixIcon: Icon(icon),
+      filled: true,
+      fillColor: Colors.white,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: BorderSide.none,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Stateful Calculator'),
-        centerTitle: true,
-        backgroundColor: Colors.indigo,
-        foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Icon(
-              Icons.calculate,
-              size: 64,
-              color: Colors.indigo,
-            ),
-            const SizedBox(height: 12),
-
-            const Text(
-              'BASIC CALCULATOR',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+            // Result display
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24),
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF3949AB), Color(0xFF7E57C2)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    operationLabel,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.white70),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'RESULT',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    result,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 34,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 24),
@@ -120,11 +177,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 decimal: true,
                 signed: true,
               ),
-              decoration: const InputDecoration(
-                labelText: 'First Number',
-                hintText: 'Enter the first number',
-                prefixIcon: Icon(Icons.looks_one),
-                border: OutlineInputBorder(),
+              decoration: fieldStyle(
+                'First Number',
+                'Enter the first number',
+                Icons.looks_one,
               ),
             ),
             const SizedBox(height: 16),
@@ -135,86 +191,26 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 decimal: true,
                 signed: true,
               ),
-              decoration: const InputDecoration(
-                labelText: 'Second Number',
-                hintText: 'Enter the second number',
-                prefixIcon: Icon(Icons.looks_two),
-                border: OutlineInputBorder(),
+              decoration: fieldStyle(
+                'Second Number',
+                'Enter the second number',
+                Icons.looks_two,
               ),
             ),
             const SizedBox(height: 24),
 
             Wrap(
               alignment: WrapAlignment.center,
-              spacing: 12,
-              runSpacing: 12,
+              spacing: 16,
+              runSpacing: 16,
               children: [
-                ElevatedButton(
-                  onPressed: () => calculate('+'),
-                  child: const Text(
-                    '+',
-                    style: TextStyle(fontSize: 24),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () => calculate('-'),
-                  child: const Text(
-                    '−',
-                    style: TextStyle(fontSize: 24),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () => calculate('×'),
-                  child: const Text(
-                    '×',
-                    style: TextStyle(fontSize: 24),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () => calculate('÷'),
-                  child: const Text(
-                    '÷',
-                    style: TextStyle(fontSize: 24),
-                  ),
-                ),
+                opButton('+', '+', Colors.green),
+                opButton('−', '-', Colors.orange),
+                opButton('×', '×', Colors.blue),
+                opButton('÷', '÷', Colors.purple),
               ],
             ),
             const SizedBox(height: 24),
-
-            Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: Colors.indigo.shade50,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: Colors.indigo),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    operationLabel,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    'RESULT',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    result,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.indigo,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
 
             OutlinedButton.icon(
               onPressed: clearCalculator,
@@ -226,6 +222,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             const Text(
               'Created by: YOUR NAME\nSection: YOUR SECTION',
               textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black54),
             ),
           ],
         ),

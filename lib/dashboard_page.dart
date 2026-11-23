@@ -8,6 +8,37 @@ class DashboardPage extends StatelessWidget {
     required this.username,
   });
 
+  Widget featureCard(
+    IconData icon,
+    Color color,
+    String title,
+    String subtitle,
+  ) {
+    return Card(
+      elevation: 2,
+      margin: const EdgeInsets.only(bottom: 12),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 8,
+        ),
+        leading: CircleAvatar(
+          radius: 24,
+          backgroundColor: color.withOpacity(0.15),
+          child: Icon(icon, color: color),
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(subtitle),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,57 +46,68 @@ class DashboardPage extends StatelessWidget {
         title: const Text('Dashboard'),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(20),
         children: [
-          const Icon(
-            Icons.dashboard,
-            size: 80,
-            color: Colors.indigo,
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'Welcome, $username!',
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
+          Container(
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(24),
+              gradient: const LinearGradient(
+                colors: [Color(0xFF3949AB), Color(0xFF7E57C2)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
-          ),
-          const SizedBox(height: 12),
-          const Text(
-            'Explore your student application using '
-            'the navigation bar below.',
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 24),
-          const Card(
             child: Column(
               children: [
-                ListTile(
-                  leading: Icon(Icons.calculate),
-                  title: Text('Calculator'),
-                  subtitle: Text(
-                    'Perform basic arithmetic operations.',
+                const Icon(
+                  Icons.dashboard,
+                  size: 56,
+                  color: Colors.white,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'Welcome, $username!',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
-                Divider(height: 1),
-                ListTile(
-                  leading: Icon(Icons.people),
-                  title: Text('Social'),
-                  subtitle: Text(
-                    'Create posts, like posts, and add comments.',
-                  ),
-                ),
-                Divider(height: 1),
-                ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Profile'),
-                  subtitle: Text(
-                    'View student information and log out.',
-                  ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Explore your student application using '
+                  'the navigation bar below.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white70),
                 ),
               ],
             ),
+          ),
+          const SizedBox(height: 24),
+          const Text(
+            'What you can do',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 12),
+          featureCard(
+            Icons.calculate,
+            Colors.indigo,
+            'Calculator',
+            'Perform basic arithmetic operations.',
+          ),
+          featureCard(
+            Icons.people,
+            Colors.green,
+            'Social',
+            'Create posts, like posts, and add comments.',
+          ),
+          featureCard(
+            Icons.person,
+            Colors.deepOrange,
+            'Profile',
+            'View student information and log out.',
           ),
         ],
       ),

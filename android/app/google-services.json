@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "767232202964",
+    "project_id": "salotillo-student-application",
+    "storage_bucket": "salotillo-student-application.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767232202964:android:98af03715a1653cb8d0341",
+        "android_client_info": {
+          "package_name": "com.example.salotillo_navigation_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNA-MaFnynK8PFXAV2ecY8Ol8uP3Pi2m8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
