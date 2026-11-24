@@ -57,7 +57,6 @@ class DefaultFirebaseOptions {
     projectId: 'salotillo-student-application',
     storageBucket: 'salotillo-student-application.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyD5lp9VCPN-bYJkXDpje3boQgQ0XyYYCbM',
     appId: '1:767232202964:ios:46728390e736214a8d0341',
@@ -66,7 +65,6 @@ class DefaultFirebaseOptions {
     storageBucket: 'salotillo-student-application.firebasestorage.app',
     iosBundleId: 'com.example.salotilloNavigationApp',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyD5lp9VCPN-bYJkXDpje3boQgQ0XyYYCbM',
     appId: '1:767232202964:ios:46728390e736214a8d0341',
